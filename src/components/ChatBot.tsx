@@ -145,20 +145,9 @@ const ChatBot = () => {
       }]);
       
       setTimeout(() => {
-        // Mock eligibility result with more realistic criteria
-        const creditScore = parseInt(userData.creditScore) || 0;
-        const monthlyIncome = parseInt(userData.income) || 0;
-        const existingEmis = parseInt(userData.emis) || 0;
-        const requestedAmount = parseInt(userData.loanAmount) || 0;
-        
-        // Calculate debt-to-income ratio
-        const debtToIncomeRatio = existingEmis / monthlyIncome;
-        
-        // More realistic eligibility criteria
-        const isEligible = creditScore >= 600 && 
-                          monthlyIncome >= 25000 && 
-                          debtToIncomeRatio < 0.5 && 
-                          requestedAmount <= (monthlyIncome * 60); // Max 60x monthly income
+        // Mock eligibility result
+        const isEligible = parseInt(userData.creditScore) > 650 && 
+                          parseInt(userData.income) > parseInt(userData.emis) * 3;
         
         setMessages(prev => [...prev, {
           type: 'bot',
